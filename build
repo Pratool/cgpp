@@ -11,15 +11,15 @@ set -x
 REPO_DIR="$(readlink -f $(dirname $0))"
 
 (
-    cd ../
-    mkdir -p install
-    cmake \
-        -G "Unix Makefiles" \
-        -B build \
-        -S "${REPO_DIR}" \
-        -DCMAKE_INSTALL_PREFIX=./install
+    mkdir -p ../install ../build
 
-    cmake --build build \
+    cmake \
+        -G "Ninja" \
+        -B ../build \
+        -S "${REPO_DIR}" \
+        -DCMAKE_INSTALL_PREFIX=../install
+
+    cmake --build ../build \
         --parallel $(nproc) \
         --target install
 )
