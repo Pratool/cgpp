@@ -6,8 +6,6 @@
 
 set -eou pipefail
 
-set -x
-
 REPO_DIR="$(readlink -f $(dirname $0))"
 
 (
